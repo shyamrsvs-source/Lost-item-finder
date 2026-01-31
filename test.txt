@@ -1,5 +1,5 @@
 <<<<<<< HEAD
 Test1 file createdTest2
 =======
-Test1 edited
+Test1 edit
 >>>>>>> 433789ae4df5327d1ce1e0e1d8765d2acb239267
