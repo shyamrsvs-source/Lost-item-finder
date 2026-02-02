@@ -9,16 +9,16 @@
             justify-content: center;
             height: 100vh;
             align-items: center;
+            background-color:#CC66CC ;
         }
         .box{
-            background-image: url('green.avif');
+            background-image: url('blue.avif');
             border: 1px solid black;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
             width: 300px;
             font-family: Arial, sans-serif;
-
         }
         .field{
             margin-bottom: 10px;
@@ -60,6 +60,21 @@
                     <label for="age"> Age </label>
                     <input type="number" min="1" max="120" id="age" name="age" placeholder="Enter your Age">
                 </div>
+                <table>
+                    <tr>
+                        <td>
+                            <label for="gender"> Gender </label>
+                        </td>
+                        <td>
+                            <select id="gender" name="gender">
+                                <option value="male"> Male </option>                
+                                <option value="female"> Female </option>
+                                <option value="other"> Other </option>
+                            </select>
+                        </td>
+                    </tr>
+
+                </table>
                 <div class="field">
                     <button type="submit"> Submit</button>
                 </div>
