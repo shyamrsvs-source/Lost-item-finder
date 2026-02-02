@@ -1,0 +1,41 @@
+
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+
+    <title>Lost & Found Portal</title>
+</head>
+
+<body>
+
+<form onsubmit="return returnValidationForm()">
+    <h1 style="text-align: center;">Lost & Found Portal</h1>
+    <h3 style="text-align: center;">Welcome back! Please login to continue</h3>
+    <br>
+
+    <h3>
+        Username :   <input type="text" id="username" placeholder="Enter the username">
+    </h3>
+    <span id="nameerror" ></span>
+
+    <h3>
+        Email Address :
+        <input type="text" id="email" placeholder="Enter the email">
+    </h3>
+    <span id="emailerror" ></span>
+
+    <h3>
+        Password :
+        <input type="password" id="password" placeholder="Enter the password">
+    </h3>
+    <span id="passerror" ></span>
+
+    <center>
+        <button type="submit">Login</button>
+    </center>
+</form>
+
+<script src="login.js"></script>
+
+</body>
+</html>
