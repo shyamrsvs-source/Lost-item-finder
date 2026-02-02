@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration Page</title>
+    </head>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            align-items: center;
+        }
+        .box{
+            background-image: url('green.avif');
+            border: 1px solid black;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+            width: 300px;
+            font-family: Arial, sans-serif;
+
+        }
+        .field{
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+
+        }
+        h2{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label{
+            margin-bottom: 5px;
+            font-weight: bold;
+            display: block;
+        }
+    </style>
+    <body>
+        <div class="box" method="post" action="/submit">
+            <form>
+                <h2> Registration Form </h2>
+                <div class="field">
+                    <label for="username"> User Name : </label>
+                    <input type="text" required id="username" name="username">
+                </div>
+                <div class="field">
+                    <label for="email">Email : </label>
+                    <input type="email" required id="email" name="email">
+                </div>
+                <div class="field">
+                    <label for="password"> Password : </label>
+                    <input type="password" required id="password" name="password">
+                </div>
+                <div class="field"> 
+                    <label for="age"> Age :</label>
+                    <input type="number" min="1" max="120" id="age" name="age">
+                </div>
+                <div class="field">
+                    <button type="submit"> Submit</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
