@@ -41,20 +41,24 @@
             <form method="post" action="/submit">
                 <h2> Registration Form </h2>
                 <div class="field">
-                    <label for="username"> User Name : </label>
-                    <input type="text" required id="username" name="username">
+                    <label for="username" align="center"> User Name </label>
+                    <input type="text" required id="username" name="username" placeholder="Enter your Name">
                 </div>
-                <div class="field">
-                    <label for="email">Email : </label>
-                    <input type="email" required id="email" name="email">
+                <div class="field" align="center">
+                    <label for="phone"> Phone Number </label>
+                    <input type="tel" required id="phone" pattern="[0-9]{10}" name="phone" placeholder="Enter your Phone Number">
                 </div>
-                <div class="field">
-                    <label for="password"> Password : </label>
-                    <input type="password" required id="password" name="password">
+                <div class="field" align="center">
+                    <label for="email">Email </label>
+                    <input type="email" required id="email" name="email" placeholder="Enter your Email">
+                </div> 
+                <div class="field" align="center">
+                    <label for="password"> Password </label>
+                    <input type="password" required id="password" name="password" placeholder="Enter your Password">
                 </div>
-                <div class="field"> 
-                    <label for="age"> Age :</label>
-                    <input type="number" min="1" max="120" id="age" name="age">
+                <div class="field" align="center"> 
+                    <label for="age"> Age </label>
+                    <input type="number" min="1" max="120" id="age" name="age" placeholder="Enter your Age">
                 </div>
                 <div class="field">
                     <button type="submit"> Submit</button>
