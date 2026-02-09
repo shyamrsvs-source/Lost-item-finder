@@ -1,3 +1,4 @@
+
 function returnValidationForm() {
 
     // Input values
@@ -49,3 +50,4 @@ function returnValidationForm() {
 
     return false;
 }
+

@@ -11,8 +11,12 @@ form {
     border-radius: 8px;
 }
 
-h1, h3 {
+h1 {
     text-align: center;
+    color: #333;
+}
+h3 {
+    text-align: left;
     color: #333;
 }
 
@@ -37,3 +41,4 @@ button {
 
 button:hover {
     background-color: #3f8efc;
+}
