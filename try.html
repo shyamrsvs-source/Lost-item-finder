@@ -9,10 +9,11 @@
             justify-content: center;
             height: 100vh;
             align-items: center;
-            background-color:#CC66CC ;
+            background-color:lightgreen ;
         }
         .box{
-            background-image: url('blue.avif');
+            background-color: white; 
+            /* background-image: url('blue.avif'); */
             border: 1px solid black;
             padding: 20px;
             border-radius: 10px;
@@ -30,31 +31,58 @@
             text-align: center;
             margin-bottom: 20px;
         }
+        h5{
+            text-align: center;
+            margin-bottom: 20px;
+
+        }
         label{
             margin-bottom: 5px;
             font-weight: bold;
             display: block;
         }
+        button{
+            background-color: lightblue;
+            border: none;
+            padding: 7px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
     </style>
+    <script>
+        function validateEmail() {
+          const email = document.getElementById("email").value;
+          const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+          if (!regex.test(email)) {
+            alert("Invalid email");
+            return false;
+          }
+          return true;
+        }
+    </script>
     <body>
         <div class="box">
-            <form method="post" action="/submit">
+            <form method="post" onsubmit="return validateEmail()">
                 <h2> Registration Form </h2>
+                
+                <h5> Welcome Back Please Login to Continue </h5>
                 <div class="field">
                     <label for="username" align="center"> User Name </label>
                     <input type="text" required id="username" name="username" placeholder="Enter your Name">
                 </div>
                 <div class="field" align="center">
                     <label for="phone"> Phone Number </label>
-                    <input type="tel" required id="phone" pattern="[0-9]{10}" name="phone" placeholder="Enter your Phone Number">
+                    <input type="tel" required id="phone" pattern="[0-9]{10}" name="phone" placeholder="XXXXXXXXXX">
                 </div>
                 <div class="field" align="center">
                     <label for="email">Email </label>
                     <input type="email" required id="email" name="email" placeholder="Enter your Email">
+
                 </div> 
                 <div class="field" align="center">
                     <label for="password"> Password </label>
-                    <input type="password" required id="password" name="password" placeholder="Enter your Password">
+                    <input type="password" required id="password" name="password" placeholder="Enter your Password" pattern="[A-Za-z]+" title="Only Letters Allowed">
                 </div>
                 <div class="field" align="center"> 
                     <label for="age"> Age </label>
@@ -75,8 +103,9 @@
                     </tr>
 
                 </table>
+                <br>
                 <div class="field">
-                    <button type="submit"> Submit</button>
+                    <button type="submit"> Login </button>
                 </div>
             </form>
         </div>
