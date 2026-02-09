@@ -13,19 +13,19 @@
         }
         .box{
             background-color: white; 
-            /* background-image: url('blue.avif'); */
-            border: 1px solid black;
+            border: 1px solid #ccc;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
             width: 300px;
-            font-family: Arial, sans-serif;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-align: center;
         }
         .field{
             margin-bottom: 10px;
             display: flex;
             flex-direction: column;
-
+            text-align: center;
         }
         h2{
             text-align: center;
@@ -40,6 +40,7 @@
             margin-bottom: 5px;
             font-weight: bold;
             display: block;
+
         }
         button{
             background-color: lightblue;
@@ -65,7 +66,7 @@
         <div class="box">
             <form method="post" onsubmit="return validateEmail()">
                 <h2> Registration Form </h2>
-                
+
                 <h5> Welcome Back Please Login to Continue </h5>
                 <div class="field">
                     <label for="username" align="center"> User Name </label>
@@ -98,6 +99,7 @@
                                 <option value="male"> Male </option>                
                                 <option value="female"> Female </option>
                                 <option value="other"> Other </option>
+                                <option value="prefer_not_to_say"> Prefer not to say </option>
                             </select>
                         </td>
                     </tr>
@@ -105,7 +107,7 @@
                 </table>
                 <br>
                 <div class="field">
-                    <button type="submit"> Login </button>
+                    <button onclick="location.href='login.html'"> <b> Login </b></button>
                 </div>
             </form>
         </div>
