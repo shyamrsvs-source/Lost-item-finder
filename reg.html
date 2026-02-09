@@ -2,76 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lost Item Founder App</title>
+    <title>Lost Item Found Portal</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #2584c9; /* light blue background */
             font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
         }
-
-        .form-container {
-            background-color: #b34a19;
-            padding: 30px;
-            border-radius: 10px;
-            width: 300px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        .container {
+            width: 350px;
+            margin: 100px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
         }
-
         h2 {
             text-align: center;
-            margin-bottom: 20px;
         }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
         input {
             width: 100%;
             padding: 8px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            margin: 8px 0;
         }
-
         button {
             width: 100%;
             padding: 10px;
-            background-color: #1976d2;
+            background-color: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
         }
-
-        button:hover {
-            background-color: #0d47a1;
+        .error {
+            color: red;
+            font-size: 14px;
         }
     </style>
+
+    <script>
+        function validateForm() {
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let age = document.getElementById("age").value;
+
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+            if (username.length < 3) {
+                alert("Username must be at least 3 characters long");
+                return false;
+            }
+
+            if (!email.match(emailPattern)) {
+                alert("Enter a valid email address");
+                return false;
+            }
+
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long");
+                return false;
+            }
+
+            if (age <= 0 || age > 120) {
+                alert("Enter a valid age");
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
 </head>
+
 <body>
+    <div class="container">
+        <h2>Lost Item Found Portal</h2>
 
-    <div class="form-container">
-        <h2>Registration Form</h2>
-        <form>
-            <label>Username: </label>
-            <input type="text" placeholder="Enter username" required>
+        <form onsubmit="return validateForm()">
+            <input type="text" id="username" placeholder="Username" required>
 
-            <label>Password: </label>
-            <input type="password" placeholder="Enter password" required>
+            <input type="email" id="email" placeholder="Email" required>
+
+            <input type="password" id="password" placeholder="Password" required>
+
+            <input type="number" id="age" placeholder="Age" required>
 
             <button type="submit">Submit</button>
         </form>
     </div>
-
 </body>
 </html>
