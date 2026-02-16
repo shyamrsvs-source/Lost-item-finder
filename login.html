@@ -9,7 +9,7 @@
 
 <body>
 
-<form onsubmit="return returnValidationForm()">
+<form <form id="loginForm">
     <h1 style="text-align: center;">Lost & Found Portal</h1>
     <h3 style="text-align: center;">Welcome back! Please login to continue</h3>
     <br>
@@ -30,10 +30,15 @@
         <input type="password" id="password" placeholder="Enter the password">
     </h3>
     <span id="passerror" ></span>
-
+    <h3>
+        Enter CAPTCHA: <span id="captchaText" style="font-weight:bold;"></span>
+    </h3>
+    <input type="text" id="captchaInput" placeholder="Enter CAPTCHA here">
+    <span id="captchaerror" style="color:red;"></span>
     <center>
         <button type="submit" >Login to Account</button>
-    </center>
+        <p id="msg"></p>
+      </center>
     <center><h5>Don't have an account? Sign up here </h5></center>
    <hr>
    <h5><i>Secure and trusted platform for lost and found items </h5>
