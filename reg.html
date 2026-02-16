@@ -1,111 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Lost Item Found Portal</title>
-
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-}
-
-.container {
-    width: 350px;
-    margin: 100px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-}
-
-h2 {
-    text-align: center;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    margin: 8px 0;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
-
-.captcha-box {
-    background: #eee;
-    padding: 10px;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    margin: 10px 0;
-    user-select: none;
-}
-
-.refresh {
-    cursor: pointer;
-    font-size: 14px;
-    color: blue;
-    text-align: right;
-}
-</style>
-</head>
-
+    <head>
+    <meta charset="UTF-8">
+    <title>Lost Item Found Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 350px;
+            margin: 100px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;    
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .captcha-box {
+            background: #eee;
+            padding: 10px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin: 10px 0;
+            user-select: none;
+        }
+        .refresh {
+            cursor: pointer;
+            font-size: 14px;
+            color: blue;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+    </style>
+    </head>
 <body>
+    <div class="container">
+        <h2>Lost Item Found Portal</h2>
+        <form onsubmit="return validateForm()">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <input type="number" id="age" placeholder="Age" required>
+        <div class="captcha-box" id="captchaText"></div>
+            <div class="refresh" onclick="generateCaptcha()">Refresh CAPTCHA</div>
 
-<div class="container">
-<h2>Lost Item Found Portal</h2>
+                <input type="text" id="captchaInput" placeholder="Enter CAPTCHA exactly as shown" required>
 
-<form onsubmit="return validateForm()">
-<input type="text" id="username" placeholder="Username" required>
-<input type="email" id="email" placeholder="Email" required>
-<input type="password" id="password" placeholder="Password" required>
-<input type="number" id="age" placeholder="Age" required>
-
-<div class="captcha-box" id="captchaText"></div>
-<div class="refresh" onclick="generateCaptcha()">Refresh CAPTCHA</div>
-
-<input type="text" id="captchaInput" placeholder="Enter CAPTCHA exactly as shown" required>
-
-<button type="submit">Submit</button>
-</form>
-</div>
-
-<script>
-let currentCaptcha = "";
-
-function generateCaptcha() {
-    let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    currentCaptcha = "";
-    
-    for (let i = 0; i < 6; i++) {
-        currentCaptcha += chars.charAt(Math.floor(Math.random() * chars.length));
+                <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+    let currentCaptcha = "";
+    function generateCaptcha() {
+        let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        currentCaptcha = "";
+        for (let i = 0; i < 6; i++) {
+            currentCaptcha += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById("captchaText").innerHTML = currentCaptcha;
     }
-
-    document.getElementById("captchaText").innerHTML = currentCaptcha;
-}
-
-function validateForm() {
-    let userInput = document.getElementById("captchaInput").value;
-
-    if (userInput !== currentCaptcha) {
-        alert("Incorrect CAPTCHA. Try again.");
-        generateCaptcha();
-        return false;
+    function validateForm() {
+        let userInput = document.getElementById("captchaInput").value;
+        if (userInput !== currentCaptcha) {
+            alert("Incorrect CAPTCHA. Try again.");
+            generateCaptcha();
+            return false;
+        }
+        alert("Form submitted successfully!");
+        return true;
     }
-
-    alert("Form submitted successfully!");
-    return true;
-}
-
-window.onload = generateCaptcha;
-</script>
-
+    window.onload = generateCaptcha;
+    </script>
 </body>
 </html>

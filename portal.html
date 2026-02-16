@@ -157,20 +157,16 @@
         function animateCounter(elementId, targetValue, isFinal = false) {
             const element = document.getElementById(elementId);
             if (!element) return;
-
             const currentValue = parseInt(element.textContent) || 0;
             const increment = Math.ceil(Math.abs(targetValue - currentValue) / 40);
             let animValue = currentValue;
             let direction = targetValue > currentValue ? 1 : -1;
-
             const interval = setInterval(() => {
                 animValue += increment * direction;
-                
                 if ((direction > 0 && animValue >= targetValue) || (direction < 0 && animValue <= targetValue)) {
                     animValue = targetValue;
                     clearInterval(interval);
                 }
-
                 if (isFinal) {
                     element.textContent = Math.floor(animValue) + '%';
                 } else {
@@ -178,14 +174,12 @@
                 }
             }, 20);
         }
-
         // Update display with current stats
         function updateStatsDisplay() {
             animateCounter('itemsReported', statsData.itemsReported);
             animateCounter('itemsRecovered', statsData.itemsRecovered);
             animateCounter('successRate', statsData.successRate, true);
         }
-
         // Add a new lost item report
         function addLostItemReport() {
             statsData.itemsReported++;
@@ -194,7 +188,6 @@
             updateStatsDisplay();
             console.log('Lost item reported. Total:', statsData.itemsReported);
         }
-
         // Add a new found item report
         function addFoundItemReport() {
             statsData.itemsRecovered++;
@@ -203,7 +196,6 @@
             updateStatsDisplay();
             console.log('Found item reported. Total:', statsData.itemsRecovered);
         }
-
         // Mark an item as recovered
         function markItemRecovered() {
             if (statsData.itemsReported > 0) {
@@ -213,7 +205,6 @@
                 updateStatsDisplay();
             }
         }
-
         // Calculate success rate
         function calculateSuccessRate() {
             if (statsData.itemsReported > 0) {
@@ -222,12 +213,10 @@
                 statsData.successRate = 0;
             }
         }
-
         // Initialize on page load
         window.addEventListener('load', function() {
             initializeStats();
             updateStatsDisplay();
-
             // Check for updates every 2 seconds
             setInterval(() => {
                 const savedStats = localStorage.getItem('lostFoundStats');
