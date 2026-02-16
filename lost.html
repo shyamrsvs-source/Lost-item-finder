@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <title>Report Lost Item</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input, textarea {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .file-input-wrapper {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .file-input-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        .file-input-helper {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+        input[type="file"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .image-preview {
+            margin-top: 10px;
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 5px;
+            display: none;
+        }
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .required {
+            color: red;
+        }
+        input[type="date"],
+        input[type="time"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Report a Lost Item</h1>
+        <div id="successMessage" class="success-message"></div>
+        <form id="lostForm">
+            <div class="form-group">
+                <label for="itemName">Item Name: <span class="required">*</span></label>
+                <input type="text" id="itemName" name="itemName" placeholder="e.g., Silver Watch, iPhone 13" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description: <span class="required">*</span></label>
+                <textarea id="description" name="description" placeholder="Provide detailed information about the item (color, brand, condition, etc.)" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="dateLost">Date Lost: <span class="required">*</span></label>
+                <input type="date" id="dateLost" name="dateLost" required>
+            </div>
+
+            <div class="form-group">
+                <label for="timeLost">Time Lost: <span class="required">*</span></label>
+                <input type="time" id="timeLost" name="timeLost" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Last Known Location: <span class="required">*</span></label>
+                <input type="text" id="location" name="location" placeholder="e.g., Central Park, Main Street Bus Stop" required>
+            </div>
+
+            <div class="form-group">
+                <label for="identifyingFeatures">Identifying Features: <span class="required">*</span></label>
+                <textarea id="identifyingFeatures" name="identifyingFeatures" placeholder="Any unique marks, engravings, scratches, or special features that can help identify the item" required></textarea>
+            </div>
+
+            <div class="file-input-wrapper">
+                <label for="itemImage" class="file-input-label">Upload Image (Optional)</label>
+                <input type="file" id="itemImage" name="itemImage" accept="image/*">
+                <div class="file-input-helper">💡 Tip: Upload a clear photo of the item if possible (JPG, PNG, max 5MB)</div>
+                <img id="imagePreview" class="image-preview" alt="Preview">
+            </div>
+
+            <button type="submit">Submit Report</button>
+        </form>
+    </div>
+    <script>
+        // Image preview functionality
+        document.getElementById('itemImage').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const preview = document.getElementById('imagePreview');
+                    preview.src = event.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form submission
+        document.getElementById('lostForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = {
+                itemName: document.getElementById('itemName').value,
+                description: document.getElementById('description').value,
+                dateLost: document.getElementById('dateLost').value,
+                timeLost: document.getElementById('timeLost').value,
+                location: document.getElementById('location').value,
+                identifyingFeatures: document.getElementById('identifyingFeatures').value,
+                imageFile: document.getElementById('itemImage').files[0] || null,
+                submittedAt: new Date().toISOString()
+            };
+
+            // Store report in localStorage
+            let lostReports = JSON.parse(localStorage.getItem('lostReports')) || [];
+            lostReports.push(formData);
+            localStorage.setItem('lostReports', JSON.stringify(lostReports));
+
+            // Update portal statistics
+            if (typeof addLostItemReport === 'function') {
+                addLostItemReport();
+            }
+
+            // Show success message
+            const successMsg = document.getElementById('successMessage');
+            successMsg.textContent = '✓ Your lost item report has been submitted successfully! We will help you find it.';
+            successMsg.style.display = 'block';
+
+            // Reset form
+            this.reset();
+            document.getElementById('imagePreview').style.display = 'none';
+
+            // Redirect to portal after 2 seconds
+            setTimeout(() => {
+                window.location.href = 'portal.html';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
