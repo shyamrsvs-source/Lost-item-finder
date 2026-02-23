@@ -1,5 +1,9 @@
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 let captcha = "";
+fetch("login.json")
+  .then(res => res.json())
+  .then(data => console.log(data))
+ 
 for (let i = 0; i < 5; i++) {
     captcha += chars.charAt(Math.floor(Math.random() * chars.length));
 }
@@ -45,3 +49,11 @@ form.addEventListener("submit", function(event) {
         document.getElementById("msg").textContent = "Login Successful ✅";
     }
 });
+function loadUsers(){
+  fetch("https://jsonplaceholder.typicode.com/users")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("users").innerHTML =
+        data.map(u => `<p>${u.name}</p>`).join("")
+    })
+}

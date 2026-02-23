@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Leanne ",
+    "username": "Bret",
+    "email": "leanne@gmail.com",
+    "address": {
+      "city": "Gwenborough",
+      "street": "Kulas Light"
+    },
+    "phone": "1-770-736-8031",
+    "website": "hildegard.org",
+    "company": {
+      "name": "Romaguera-Crona"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Ervin Howell",
+    "username": "Antonette",
+    "email": "ervin@gmail.com",
+    "address": {
+      "city": "Wisokyburgh",
+      "street": "Victor Plains"
+    },
+    "phone": "010-692-6593",
+    "website": "anastasia.net",
+    "company": {
+      "name": "Deckow-Crist"
+    }
+  }
+]
